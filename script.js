@@ -1,59 +1,62 @@
 const questions = [
     {
         id: 1,
-        text: "你觉得自己目前的情绪状态如何？",
+        text: "病人目前的状态如何？",
         choices: [
-            { text: "开心", nextQuestion: 2 },
-            { text: "一般", nextQuestion: 3 },
-            { text: "沮丧", nextQuestion: 4 }
+            { text: "开心飞起", nextQuestion: 6 },
+            { text: "有点难受", nextQuestion: 2 },
+            { text: "完全昏迷", nextQuestion: 3 }
         ]
     },
     {
         id: 2,
-        text: "你觉得开心的原因是什么？",
+        text: "难受的原因是什么？",
         choices: [
-            { text: "工作顺利", nextQuestion: 5 },
-            { text: "家庭幸福", nextQuestion: 5 },
-            { text: "其他", nextQuestion: 5 }
+            { text: "没吃饭", nextQuestion: 4 },
+            { text: "吃撑了", nextQuestion: 4 },
         ],
-        image: "https://example.com/happy.jpg" // 替换为实际图片URL
+        image: "media/心脏1.gif" // 替换为实际图片URL
     },
     {
         id: 3,
-        text: "你觉得一般的原因是什么？",
+        text: "尝试了哪些手段？",
         choices: [
-            { text: "工作压力", nextQuestion: 5 },
-            { text: "人际关系", nextQuestion: 5 },
-            { text: "其他", nextQuestion: 5 }
+            { text: "爱的呼唤", nextQuestion: 5 },
+            { text: "电击疗法", nextQuestion: 5 },
+            { text: "放弃治疗", nextQuestion: 5 }
         ],
-        image: "https://example.com/stress.jpg" // 替换为实际图片URL
+        image: "media/心脏2.jpeg" // 替换为实际图片URL
     },
     {
         id: 4,
-        text: "你觉得沮丧的原因是什么？",
+        text: "病人胃口如何",
         choices: [
-            { text: "工作不顺", nextQuestion: 5 },
-            { text: "家庭问题", nextQuestion: 5 },
-            { text: "健康问题", nextQuestion: 5 }
+            { text: "茶饭不思", nextQuestion: 5 },
+            { text: "酒囊饭袋", nextQuestion: 5 },
+            { text: "生吞大象", nextQuestion: 5 }
         ]
     },
     {
         id: 5,
-        text: "请输入你的年龄：",
+        text: "请输入病人的年龄：",
         input: {
             type: "number",
-            nextQuestion: (value) => value >= 18 ? 6 : 7
+            nextQuestion: (value) => value <= 30 ? 6 : 7
         }
     },
     {
         id: 6,
-        text: "你已经成年。",
-        choices: []
+        text: "洒洒水啦",
+        choices: [
+            { text: "重新测试", nextQuestion: 1 },
+        ]
     },
     {
         id: 7,
-        text: "你未满18岁。",
-        choices: []
+        text: "赶紧手术",
+        choices: [
+            { text: "重新测试", nextQuestion: 1 },
+        ]
     }
 ];
 
