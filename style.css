@@ -15,13 +15,14 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     width: 90%;
     max-width: 600px;
+    box-sizing: border-box;
 }
 
 h1 {
     text-align: center;
 }
 
-#choices-container {
+#choices-container, #input-container {
     margin-top: 20px;
 }
 
@@ -39,4 +40,16 @@ button {
 button:disabled {
     background-color: #7ba1ff;
     cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+    }
 }
