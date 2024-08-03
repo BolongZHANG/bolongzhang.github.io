@@ -306,15 +306,19 @@ function displayQuestion() {
             const label = document.createElement('label');
             label.innerText = input.label;
             const inputElement = document.createElement('input');
-            inputElement.type = input.type;
+            inputElement.type = 'text';
             inputElement.id = input.id;
             inputElement.inputMode = 'decimal'; // 确保在移动设备上弹出数字键盘
+            inputElement.pattern = '\\d*\\.?\\d+'; // 限制输入格式
             label.appendChild(inputElement);
             inputContainer.appendChild(label);
 
             // 为新的输入框添加事件监听器
             inputElement.addEventListener('input', function (e) {
                 let value = e.target.value;
+
+                // 记录光标位置
+                const cursorPosition = e.target.selectionStart;
 
                 // 替换掉所有非数字和非小数点字符
                 value = value.replace(/[^0-9.]/g, '');
@@ -327,6 +331,9 @@ function displayQuestion() {
 
                 // 更新输入框的值
                 e.target.value = value;
+
+                // 设置光标位置
+                e.target.setSelectionRange(cursorPosition, cursorPosition);
             });
         });
 
@@ -374,6 +381,9 @@ window.onload = function() {
         numericInput.addEventListener('input', function (e) {
             let value = e.target.value;
 
+            // 记录光标位置
+            const cursorPosition = e.target.selectionStart;
+
             // 替换掉所有非数字和非小数点字符
             value = value.replace(/[^0-9.]/g, '');
 
@@ -385,6 +395,9 @@ window.onload = function() {
 
             // 更新输入框的值
             e.target.value = value;
+
+            // 设置光标位置
+            e.target.setSelectionRange(cursorPosition, cursorPosition);
         });
     }
 }
