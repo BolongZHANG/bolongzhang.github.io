@@ -308,8 +308,26 @@ function displayQuestion() {
             const inputElement = document.createElement('input');
             inputElement.type = input.type;
             inputElement.id = input.id;
+            inputElement.inputMode = 'decimal'; // 确保在移动设备上弹出数字键盘
             label.appendChild(inputElement);
             inputContainer.appendChild(label);
+
+            // 为新的输入框添加事件监听器
+            inputElement.addEventListener('input', function (e) {
+                let value = e.target.value;
+
+                // 替换掉所有非数字和非小数点字符
+                value = value.replace(/[^0-9.]/g, '');
+
+                // 确保只有一个小数点
+                const parts = value.split('.');
+                if (parts.length > 2) {
+                    value = parts[0] + '.' + parts.slice(1).join('');
+                }
+
+                // 更新输入框的值
+                e.target.value = value;
+            });
         });
 
         nextButton.style.display = 'block';
@@ -347,4 +365,26 @@ function goHome() {
     displayQuestion();
 }
 
-window.onload = displayQuestion;
+window.onload = function() {
+    displayQuestion();
+
+    // 添加事件监听器，确保输入框只接受数字和小数点
+    const numericInput = document.getElementById('numeric-input');
+    if (numericInput) {
+        numericInput.addEventListener('input', function (e) {
+            let value = e.target.value;
+
+            // 替换掉所有非数字和非小数点字符
+            value = value.replace(/[^0-9.]/g, '');
+
+            // 确保只有一个小数点
+            const parts = value.split('.');
+            if (parts.length > 2) {
+                value = parts[0] + '.' + parts.slice(1).join('');
+            }
+
+            // 更新输入框的值
+            e.target.value = value;
+        });
+    }
+}
