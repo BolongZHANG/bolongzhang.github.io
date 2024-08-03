@@ -9,19 +9,23 @@
 <body>
     <div class="container">
         <h1>心脏诊断</h1>
-        <div id="question-container">
+        <div id="question-container" class="question-section">
             <!-- 问题会在这里动态插入 -->
         </div>
-        <div id="image-container">
+        <div id="image-container" class="image-section">
             <!-- 图片会在这里动态插入 -->
         </div>
-        <div id="choices-container">
+        <div id="choices-container" class="choices-section">
             <!-- 选项会在这里动态插入 -->
         </div>
-        <div id="input-container">
+        <div id="input-container" class="input-section">
             <!-- 数字输入会在这里动态插入 -->
         </div>
-        <button id="next-button" onclick="nextQuestion()">确认</button>
+        <button id="next-button" class="action-button" onclick="nextQuestion()">确认</button>
+        <div class="navigation-buttons">
+            <button id="back-button" class="nav-button" onclick="goBack()">返回上一步</button>
+            <button id="home-button" class="nav-button" onclick="goHome()">回到首页</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

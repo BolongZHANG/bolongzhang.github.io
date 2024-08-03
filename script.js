@@ -61,6 +61,7 @@ const questions = [
 ];
 
 let currentQuestionIndex = 0;
+let questionHistory = [];
 
 function displayQuestion() {
     const questionContainer = document.getElementById('question-container');
@@ -87,6 +88,7 @@ function displayQuestion() {
             const choiceButton = document.createElement('button');
             choiceButton.innerText = choice.text;
             choiceButton.onclick = () => {
+                questionHistory.push(currentQuestionIndex);
                 currentQuestionIndex = questions.findIndex(q => q.id === choice.nextQuestion);
                 displayQuestion();
             };
@@ -103,6 +105,7 @@ function displayQuestion() {
         nextButton.style.display = 'block';
         nextButton.onclick = () => {
             const inputValue = Number(document.getElementById('user-input').value);
+            questionHistory.push(currentQuestionIndex);
             currentQuestionIndex = questions.findIndex(q => q.id === currentQuestion.input.nextQuestion(inputValue));
             displayQuestion();
         };
@@ -116,6 +119,19 @@ function nextQuestion() {
     if (currentQuestionIndex < questions.length) {
         displayQuestion();
     }
+}
+
+function goBack() {
+    if (questionHistory.length > 0) {
+        currentQuestionIndex = questionHistory.pop();
+        displayQuestion();
+    }
+}
+
+function goHome() {
+    questionHistory = [];
+    currentQuestionIndex = 0;
+    displayQuestion();
 }
 
 window.onload = displayQuestion;
