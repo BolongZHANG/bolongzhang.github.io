@@ -202,7 +202,7 @@ const questions = [
         text: "PPV是否超过9",
         choices: [
             { text: "PPV < 9", nextQuestion: 30 },
-            { text: "IAP >= 9", nextQuestion: 99 },
+            { text: "PPV >= 9", nextQuestion: 99 },
         ]
     },
     {
@@ -248,7 +248,7 @@ const questions = [
             { label: "PPV TVC base：", type: "number", id: "base" },
             { label: "PPV TVC max：", type: "number", id: "max" }
         ],
-        nextQuestion: (values) => (values["max"] - values["base"])/values["base"] >= 3 ? 99 : 98
+        nextQuestion: (values) => values["max"] - values["base"] >= 3 ? 99 : 98
     },
 
     {
