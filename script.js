@@ -1,63 +1,267 @@
 const questions = [
     {
         id: 1,
-        text: "病人目前的状态如何？",
+        text: "病人通气方式",
         choices: [
-            { text: "开心飞起", nextQuestion: 6 },
-            { text: "有点难受", nextQuestion: 2 },
-            { text: "完全昏迷", nextQuestion: 3 }
+            { text: "自主呼吸", nextQuestion: 2 },
+            { text: "机械通气", nextQuestion: 3 },
         ]
+        // image: "media/心脏1.gif" // 替换为实际图片URL
     },
     {
         id: 2,
-        text: "难受的原因是什么？",
+        text: "是否有心输出量检测仪器",
         choices: [
-            { text: "没吃饭", nextQuestion: 4 },
-            { text: "吃撑了", nextQuestion: 4 },
+            { text: "有", nextQuestion: 6 },
+            { text: "无", nextQuestion: 7 },
         ],
-        image: "media/心脏1.gif" // 替换为实际图片URL
     },
     {
         id: 3,
-        text: "尝试了哪些手段？",
+        text: "是否有心输出量检测仪器",
         choices: [
-            { text: "爱的呼唤", nextQuestion: 5 },
-            { text: "电击疗法", nextQuestion: 5 },
-            { text: "放弃治疗", nextQuestion: 5 }
+            { text: "有", nextQuestion: 4 },
+            { text: "无", nextQuestion: 5 },
         ],
-        image: "media/心脏2.jpeg" // 替换为实际图片URL
     },
     {
         id: 4,
-        text: "病人胃口如何",
+        text: "CO监测仪器是否可校正",
         choices: [
-            { text: "茶饭不思", nextQuestion: 5 },
-            { text: "酒囊饭袋", nextQuestion: 5 },
-            { text: "生吞大象", nextQuestion: 5 }
+            { text: "可校正的CO监测仪器", nextQuestion: 8 },
+            { text: "不可校正的CO监测仪器", nextQuestion: 12 },
         ]
     },
     {
         id: 5,
-        text: "请输入病人的血压和心率：",
-        inputs: [
-            { label: "血压：", type: "number", id: "blood-pressure" },
-            { label: "心率：", type: "number", id: "heart-rate" }
-        ],
-        nextQuestion: (values) => values["blood-pressure"] > 120 ? 6 : 7
+        text: "LOVT VTI是否可获取",
+        choices: [
+            { text: "是", nextQuestion: 9 },
+            { text: "否", nextQuestion: 10 },
+        ]
     },
     {
         id: 6,
-        text: "洒洒水啦",
+        text: "CO监测仪器是否可校正",
         choices: [
-            { text: "重新测试", nextQuestion: 1 },
+            { text: "可校正的CO监测仪器", nextQuestion: 11 },
+            { text: "不可校正的CO监测仪器", nextQuestion: 12 },
         ]
     },
     {
         id: 7,
-        text: "赶紧手术",
+        text: "LOVT VTI是否可获取",
         choices: [
-            { text: "重新测试", nextQuestion: 1 },
+            { text: "是", nextQuestion: 13 },
+            { text: "否", nextQuestion: 97 },
         ]
+    },
+    {
+        id: 8,
+        text: "自主呼吸情况",
+        choices: [
+            { text: "自主呼吸强", nextQuestion: 11 },
+            { text: "自主呼吸不太强", nextQuestion: 14 },
+        ]
+    },
+    {
+        id: 9,
+        text: "自主呼吸和心率情况",
+        choices: [
+            { text: "深度镇静镇痛且无心律失常", nextQuestion: 15 },
+            { text: "非深度镇静镇痛（存在自主呼吸）或心律失常", nextQuestion: 16 },
+        ]
+    },
+    {
+        id: 10,
+        text: "自主呼吸和心率情况",
+        choices: [
+            { text: "深度镇静镇痛且无心律失常", nextQuestion: 25 },
+            { text: "非深度镇静镇痛（存在自主呼吸）或心律失常", nextQuestion: 97 },
+        ]
+    },
+    {
+        id: 11,
+        text: "IAP是否超过16",
+        choices: [
+            { text: "IAP < 16", nextQuestion: 17 },
+            { text: "IAP >= 16", nextQuestion: 18 },
+        ]
+    },
+    {
+        id: 12,
+        text: "IAP是否超过16",
+        choices: [
+            { text: "IAP < 16", nextQuestion: 19 },
+            { text: "IAP >= 16", nextQuestion: 28 },
+        ]
+    },
+    {
+        id: 13,
+        text: "IAP是否超过16",
+        choices: [
+            { text: "IAP < 16", nextQuestion: 22 },
+            { text: "IAP >= 16", nextQuestion: 21 },
+        ]
+    },
+    {
+        id: 14,
+        text: "IAP是否超过16",
+        choices: [
+            { text: "IAP < 16", nextQuestion: 23 },
+            { text: "IAP >= 16", nextQuestion: 24 },
+        ]
+    },
+    {
+        id: 15,
+        text: "以下是可供选择的检测方法（可任选其一）：",
+        choices: [
+            { text: "FC", nextQuestion: 21 },
+            { text: "PLR", nextQuestion: 22 },
+            { text: "PPV", nextQuestion: 25 },
+        ]
+    },
+    {
+        id: 16,
+        text: "以下是可供选择的检测方法（可任选其一）：",
+        choices: [
+            { text: "FC", nextQuestion: 21 },
+            { text: "PLR", nextQuestion: 22 },
+        ]
+    },
+    {
+        id: 17,
+        text: "以下是可供选择的检测方法（可任选其一）：",
+        choices: [
+            { text: "FC", nextQuestion: 28 },
+            { text: "mini-FC", nextQuestion: 27 },
+            { text: "PLR", nextQuestion: 26 },
+        ]
+    },
+    {
+        id: 18,
+        text: "以下是可供选择的检测方法（可任选其一）：",
+        choices: [
+            { text: "FC", nextQuestion: 28 },
+            { text: "mini-FC", nextQuestion: 27 },
+        ]
+    },
+    {
+        id: 19,
+        text: "以下是可供选择的检测方法（可任选其一）：",
+        choices: [
+            { text: "FC", nextQuestion: 28 },
+            { text: "PLR", nextQuestion: 26 },
+        ]
+    },
+    // {
+    //     id: 20,
+    //     text: "以下是可供选择的检测方法（可任选其一）：",
+    //     choices: [
+    //         { text: "FC", nextQuestion: 28 },
+    //     ]
+    // },
+    {
+        id: 21,
+        text: "检测方法：FC<br>请输入 LOVT VTI base 和 LOVT VTI end",
+        inputs: [
+            { label: "LOVT VTI base：", type: "number", id: "base" },
+            { label: "LOVT VTI end：", type: "number", id: "end" }
+        ],
+        nextQuestion: (values) => (values["end"] - values["base"])/values["base"] > 0.15 ? 99 : 98
+    },
+    {
+        id: 22,
+        text: "检测方法：PLR<br>请输入 LOVT VTI base 和 LOVT VTI end",
+        inputs: [
+            { label: "LOVT VTI base：", type: "number", id: "base" },
+            { label: "LOVT VTI end：", type: "number", id: "end" }
+        ],
+        nextQuestion: (values) => (values["end"] - values["base"])/values["base"] > 0.11 ? 99 : 98
+    },
+    {
+        id: 23,
+        text: "以下是可供选择的检测方法（可任选其一）：",
+        choices: [
+            { text: "FC", nextQuestion: 28 },
+            { text: "mini-FC", nextQuestion: 27 },
+            { text: "PLR", nextQuestion: 26 },
+            { text: "EEO", nextQuestion: 29 },
+        ]
+    },
+    {
+        id: 24,
+        text: "以下是可供选择的检测方法（可任选其一）：",
+        choices: [
+            { text: "mini-FC", nextQuestion: 27 },
+            { text: "EEO", nextQuestion: 29 },
+        ]
+    },
+    {
+        id: 25,
+        text: "PPV是否超过9",
+        choices: [
+            { text: "PPV < 9", nextQuestion: 30 },
+            { text: "IAP >= 9", nextQuestion: 99 },
+        ]
+    },
+    {
+        id: 26,
+        text: "检测方法：PLR<br>请输入 CI base 和 CI max",
+        inputs: [
+            { label: "CI base：", type: "number", id: "base" },
+            { label: "CI max：", type: "number", id: "max" }
+        ],
+        nextQuestion: (values) => (values["max"] - values["base"])/values["base"] > 0.1 ? 99 : 98
+    },
+    {
+        id: 27,
+        text: "检测方法：mini-FC<br>请输入 CI base 和 CI max",
+        inputs: [
+            { label: "CI base：", type: "number", id: "base" },
+            { label: "CI max：", type: "number", id: "max" }
+        ],
+        nextQuestion: (values) => (values["max"] - values["base"])/values["base"] > 0.05 ? 99 : 98
+    },
+    {
+        id: 28,
+        text: "检测方法：FC<br>请输入 CI base 和 CI end",
+        inputs: [
+            { label: "CI base：", type: "number", id: "base" },
+            { label: "CI end：", type: "number", id: "end" }
+        ],
+        nextQuestion: (values) => (values["end"] - values["base"])/values["base"] > 0.15 ? 99 : 98
+    },
+    {
+        id: 29,
+        text: "检测方法：EEO<br>请输入 CI max 和 CI end",
+        inputs: [
+            { label: "CI base：", type: "number", id: "base" },
+            { label: "CI max：", type: "number", id: "max" }
+        ],
+        nextQuestion: (values) => (values["max"] - values["base"])/values["base"] > 0.05 ? 99 : 98
+    },
+    {
+        id: 30,
+        text: "检测方法：PPV TVC<br>将潮气量从6ml/kg升到8ml/kg并持续一分钟，请输入PPV TVC base和PPV TVC max",
+        inputs: [
+            { label: "PPV TVC base：", type: "number", id: "base" },
+            { label: "PPV TVC max：", type: "number", id: "max" }
+        ],
+        nextQuestion: (values) => (values["max"] - values["base"])/values["base"] >= 3 ? 99 : 98
+    },
+
+    {
+        id: 97,
+        text: "无可用检测方法",
+    },
+    {
+        id: 98,
+        text: "<strong>无液体反应性</strong>",
+    },
+    {
+        id: 99,
+        text: "<strong>有液体反应性</strong>",
     }
 ];
 
