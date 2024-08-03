@@ -38,11 +38,12 @@ const questions = [
     },
     {
         id: 5,
-        text: "请输入病人的年龄：",
-        input: {
-            type: "number",
-            nextQuestion: (value) => value <= 30 ? 6 : 7
-        }
+        text: "请输入病人的血压和心率：",
+        inputs: [
+            { label: "血压：", type: "number", id: "blood-pressure" },
+            { label: "心率：", type: "number", id: "heart-rate" }
+        ],
+        nextQuestion: (values) => values["blood-pressure"] > 120 ? 6 : 7
     },
     {
         id: 6,
@@ -96,17 +97,25 @@ function displayQuestion() {
         });
     }
 
-    if (currentQuestion.input) {
-        const inputElement = document.createElement('input');
-        inputElement.type = currentQuestion.input.type;
-        inputElement.id = 'user-input';
-        inputContainer.appendChild(inputElement);
+    if (currentQuestion.inputs) {
+        currentQuestion.inputs.forEach(input => {
+            const label = document.createElement('label');
+            label.innerText = input.label;
+            const inputElement = document.createElement('input');
+            inputElement.type = input.type;
+            inputElement.id = input.id;
+            label.appendChild(inputElement);
+            inputContainer.appendChild(label);
+        });
 
         nextButton.style.display = 'block';
         nextButton.onclick = () => {
-            const inputValue = Number(document.getElementById('user-input').value);
+            const inputValues = {};
+            currentQuestion.inputs.forEach(input => {
+                inputValues[input.id] = Number(document.getElementById(input.id).value);
+            });
             questionHistory.push(currentQuestionIndex);
-            currentQuestionIndex = questions.findIndex(q => q.id === currentQuestion.input.nextQuestion(inputValue));
+            currentQuestionIndex = questions.findIndex(q => q.id === currentQuestion.nextQuestion(inputValues));
             displayQuestion();
         };
     } else {
